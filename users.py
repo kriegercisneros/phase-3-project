@@ -10,7 +10,24 @@ cursor = connection.cursor()
 #         email TEXT NOT NULL,
 #         password TEXT NOT NULL);'''
 
-sql = "DELETE FROM users WHERE id = 2"
+# sql = "DROP TABLE user_convos"
+
+# sql = '''CREATE TABLE user_convos (
+#         id INTEGER PRIMARY KEY, 
+#         user_id INTEGER NOT NULL,
+#         sessions_id INTEGER NOT NULL, 
+#         user_input TEXT NOT NULL, 
+#         bot_response TEXT NOT NULL, 
+#         FOREIGN KEY(user_id) REFERENCES users(id), 
+#         FOREIGN KEY(sessions_id) REFERENCES sessions(id));'''
+
+# sql= '''CREATE TABLE sessions (
+#         id INTEGER PRIMARY KEY, 
+#         user_id INTEGER NOT NULL, 
+#         time_stamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+#         FOREIGN KEY(user_id) REFERENCES users(id));'''
+
+
 cursor.execute(sql)
 
 connection.commit()

@@ -5,6 +5,8 @@ connection = sqlite3.connect('db.sqlite3')
 cursor = connection.cursor()
 
 email = input("Enter your email: ")
+#Declaring a user_id to equal None so i can set it inside of the if statement and use it as an export to bot.py
+user_id = None
 
 check_sql_email="SELECT password FROM users WHERE email = ?"
 cursor.execute(check_sql_email, (email,))
@@ -25,10 +27,13 @@ else:
         cursor.execute(name)
         result_name= cursor.fetchone()
         print(f"Hello, {name}!")
+        #now here is where i want to set foreign key user_id
+        user_id = "SELECT id FROM users WHERE email=email"
+
+
     else:
         print("Invalid password")
-
-cursor.close()
-connection.close()
+        cursor.close()
+        connection.close()
     
 

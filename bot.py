@@ -3,6 +3,14 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.trainers import ListTrainer
 from cleaner import clean_corpus
 
+from CLI_user import user_id
+
+import sqlite3
+
+connection = sqlite3.connect('db.sqlite3')
+
+cursor = connection.cursor()
+
 CORPUS_FILE = "chat.txt"
 
 #EDR stands for ExtremeDataRetrieval
@@ -36,19 +44,25 @@ chatbot = ChatBot(
 exit_conditions = (":q", "quit", "exit")
 time_commands = ("Time", "What time is it?", "Do you know the time?")
 while True:
-    query = input("Your turn, human: ")
-    if query.lower() in exit_conditions:
+    user_input = input(">>>")
+    if user_input.lower() in exit_conditions:
         print("🤖 Goodbye, human!")
         break
-    elif query.lower() in time_commands:
-        response = chatbot.get_response(query)
+    elif user_input.lower() in time_commands:
+        response = chatbot.get_response(user_input)
         print(f"🤖 {response}")
     else:
-        response = chatbot.get_response(query)
-        print(f"🤖 {response}")
+        bot_response = chatbot.get_response(user_input)
+        print(f"🤖 {bot_response}")
+        #this is where i need to log the query and response in the sessions table and user_convos table
+        insert_sql_sessions = '''INSERT INTO sessions (user_id)'''
+        sessions_id = "SELECT MAX(id) FROM sessions"
+        insert_sql_user_convos = '''INSERT INTO user_convos (user_id, sessions_id, user_input, bot_response)
+                                    VALUES (?, ?, ?, ?)'''
+cursor.execute(insert_sql_sessions, (user_id))
+cursor.execute(insert_sql_user_convos, (user_id, sessions_id, user_input, bot_response))
+connection.commit()
+print("Session and User Conversation successfully added.")
 
-    # query = input("Your turn, human: ")
-    # if query in exit_conditions:
-    #     break
-    # else:
-    #     print(f"🤖 {chatbot.get_response(query)}")
+cursor.close()
+connection.close()
