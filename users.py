@@ -1,8 +1,8 @@
-# import sqlite3
+import sqlite3
 
-# connection = sqlite3.connect('db.sqlite3')
+connection = sqlite3.connect('db.sqlite3')
 
-# cursor = connection.cursor()
+cursor = connection.cursor()
 
 # sql = '''CREATE TABLE users (
 #         id INTEGER PRIMARY KEY,
@@ -10,9 +10,10 @@
 #         email TEXT NOT NULL,
 #         password TEXT NOT NULL);'''
 
-# cursor.execute(sql)
+sql = "DELETE FROM users WHERE id = 2"
+cursor.execute(sql)
 
-# connection.commit()
+connection.commit()
 
-# cursor.close()
-# connection.close()
+cursor.close()
+connection.close()
