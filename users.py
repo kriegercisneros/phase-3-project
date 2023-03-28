@@ -10,7 +10,7 @@ cursor = connection.cursor()
 #         email TEXT NOT NULL,
 #         password TEXT NOT NULL);'''
 
-# sql = "DROP TABLE user_convos"
+# sql = "DROP TABLE sessions"
 
 # sql = '''CREATE TABLE user_convos (
 #         id INTEGER PRIMARY KEY, 
@@ -21,11 +21,11 @@ cursor = connection.cursor()
 #         FOREIGN KEY(user_id) REFERENCES users(id), 
 #         FOREIGN KEY(sessions_id) REFERENCES sessions(id));'''
 
-# sql= '''CREATE TABLE sessions (
-#         id INTEGER PRIMARY KEY, 
-#         user_id INTEGER NOT NULL, 
-#         time_stamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-#         FOREIGN KEY(user_id) REFERENCES users(id));'''
+sql= '''CREATE TABLE sessions (
+        id INTEGER PRIMARY KEY, 
+        user_id INTEGER NOT NULL, 
+        start DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(user_id) REFERENCES users(id));'''
 
 
 cursor.execute(sql)

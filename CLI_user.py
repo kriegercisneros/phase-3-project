@@ -26,14 +26,17 @@ else:
         name = "SELECT name FROM users WHERE email = email"
         cursor.execute(name)
         result_name= cursor.fetchone()
-        print(f"Hello, {name}!")
+        print(f"Hello, {result_name[0]}!")
         #now here is where i want to set foreign key user_id
-        user_id = "SELECT id FROM users WHERE email=email"
-
-
+        user_id_query = "SELECT id FROM users WHERE email=?"
+        cursor.execute(user_id_query, (email,))
+        user_id = cursor.fetchone()[0]
+        #I need user id to be captured here so I can use it in bot.py
+        from bot import run_bot
+        #making a change: passing in user_id as an argument
+        run_bot(user_id)
+        
     else:
         print("Invalid password")
         cursor.close()
         connection.close()
-    
-
