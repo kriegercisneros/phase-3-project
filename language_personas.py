@@ -39,6 +39,9 @@ option=input('''
 ''')
 exit_conditions = (":q", "quit", "exit")
 time_commands = ("Time", "What time is it?", "Do you know the time?")
+insert_sql_sessions = '''INSERT INTO sessions (user_id) VALUES (?)'''
+insert_sql_user_convos = '''INSERT INTO user_convos (user_id, sessions_id, user_input, bot_response)
+                                VALUES (?, ?, ?, ?)'''
 
 while True:
     if(option == "1"):
@@ -49,6 +52,14 @@ while True:
         else:
             eng_lang_persona_response = bot.get_response(user_input, persona='English Language')
             print('English Language 🤖:', eng_lang_persona_response)
+            if session_started == False:
+                cursor.execute(insert_sql_sessions, (user_id,))
+                print("User session started.")
+                # fetch the latest session ID
+                cursor.execute("SELECT MAX(id) FROM sessions")
+                #this will only run if a new bot instance is running
+                session_id = cursor.fetchone()[0]
+                session_started=True
     elif(option == "2"):
         user_input = input(">>> ")
         if user_input.lower() in exit_conditions:
@@ -57,3 +68,11 @@ while True:
         else:
             span_lang_persona_response = bot.get_response(user_input, persona='Spanish Language')
             print('Spanish Language 🤖:', span_lang_persona_response)
+            if session_started == False:
+                cursor.execute(insert_sql_sessions, (user_id,))
+                print("User session started.")
+                # fetch the latest session ID
+                cursor.execute("SELECT MAX(id) FROM sessions")
+                #this will only run if a new bot instance is running
+                session_id = cursor.fetchone()[0]
+                session_started=True

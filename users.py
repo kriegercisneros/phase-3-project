@@ -1,4 +1,7 @@
 import sqlite3
+# from chatterbot.trainers import ChatterBotCorpusTrainer
+# from chatterbot.trainers import ListTrainer
+# from cleaner import clean_corpus
 
 connection = sqlite3.connect('db.sqlite3')
 

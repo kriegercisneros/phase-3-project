@@ -10,11 +10,13 @@ def past_convos(id_from_user):
     #list comprehension calling each row in our loop
     # session_id= cursor.fetchall()
     session_ids = [row[0] for row in cursor.fetchall()]
+    option2=None
+    option3=None
     if session_ids ==[]:
          option= input("No conversations yet!  Select 1 to start a new one.")
          if(option == "1"):
             from bot import run_bot
-            run_bot(id_from_user)
+            run_bot(id_from_user, None)
     #session_id = [4, 5, 6, 7, 8]
     else:
         displayed_session_ids =""
@@ -23,21 +25,6 @@ def past_convos(id_from_user):
             if count <5:
                 displayed_session_ids += (f"{count}: {id}, ")
                 count += 1
-
-        # for id in session_ids: 
-        #     session_convos = "SELECT user_input FROM user_convos WHERE sessions_id=?"
-        #     cursor.execute(session_convos, (id,))
-        #     user_input = [row[0] for row in cursor.fetchall()]
-        #     print(f'user_input{id}: {user_input}')
-
-        # for id in session_ids:    
-        #     session_response = "SELECT bot_response FROM user_convos WHERE sessions_id=?"
-        #     cursor.execute(session_response, (id,))
-        #     bot_response = [row[0] for row in cursor.fetchall()]
-            # print(f'bot:response:{bot_response}')
-
-        option2=None
-        option3=None
         option= input(f'''
             Would you like to:
                 1) View and Continue a Conversation 
