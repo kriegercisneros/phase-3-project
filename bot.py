@@ -47,8 +47,10 @@ def run_bot(user_id, session_id):
     insert_sql_user_convos = '''INSERT INTO user_convos (user_id, sessions_id, user_input, bot_response)
                                 VALUES (?, ?, ?, ?)'''
     
-    session_started = False
-    session_id = None
+    
+    session_started = True
+    if(session_id == None):
+        session_started = False
 
     while True:
         user_input = input(">>> ")
@@ -63,16 +65,16 @@ def run_bot(user_id, session_id):
             bot_response = chatbot.get_response(user_input)
             print(f"🤖 {bot_response}")
             # execute the sessions query
-            if not session_started:
+            if session_started == False:
                 cursor.execute(insert_sql_sessions, (user_id,))
                 print("User session started.")
                 # fetch the latest session ID
                 cursor.execute("SELECT MAX(id) FROM sessions")
                 #this will only run if a new bot instance is running
-                sessions_id = cursor.fetchone()[0]
+                session_id = cursor.fetchone()[0]
                 session_started=True
             # execute the user_convos query
-            cursor.execute(insert_sql_user_convos, (user_id, sessions_id, str(user_input), str(bot_response)))
+            cursor.execute(insert_sql_user_convos, (user_id, session_id, str(user_input), str(bot_response)))
             connection.commit()
             print("User Conversation successfully added.")
 

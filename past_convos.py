@@ -36,16 +36,23 @@ def past_convos(id_from_user):
         #     bot_response = [row[0] for row in cursor.fetchall()]
             # print(f'bot:response:{bot_response}')
 
+        option2=None
+        option3=None
         option= input(f'''
             Would you like to:
-                    1) View and Continue a Conversation 
-                    2) Delete a Conversation     
+                1) View and Continue a Conversation 
+                2) Delete a Conversation     
                     ''')
         if(option =="1"):
-             option2 = input(f'''
-             Select a conversation to Continue:
+            option2 = input(f'''
+            Select a conversation to Continue:
                 {displayed_session_ids}
-             ''')
+            ''')
+        else:
+            option3 = input(f'''
+            Select a conversation to Delete:
+                {displayed_session_ids}
+            ''')
         #the code below needs to go in a different file i think 
         if(option2 == "1"):
             session_convos = "SELECT user_input FROM user_convos WHERE sessions_id=?"
@@ -94,7 +101,7 @@ def past_convos(id_from_user):
                         user: {r}
                             bot: {resp}
                     ''')
-        else:
+        elif(option2=="4"):
             session_convos = "SELECT user_input FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_convos, (session_ids[3],))
             user_input = [row[0] for row in cursor.fetchall()]
@@ -109,3 +116,28 @@ def past_convos(id_from_user):
                     ''')
     #right now i am passing in user id of 4 for testing purposes
     # past_convos(4)
+
+    if(option3 == "1"):
+        # print(f"deleting {session_ids[0]}")
+        delete= "DELETE FROM sessions WHERE id = ?"
+        cursor.execute(delete, (session_ids[0],))
+        connection.commit()
+
+    elif(option3 == "2"):
+        # print(f"deleting {session_ids[1]}")
+        delete= "DELETE FROM sessions WHERE id = ?"
+        cursor.execute(delete, (session_ids[1],))
+        connection.commit()
+    
+    elif(option3 == "3"):
+        # print(f"deleting {session_ids[2]}")
+        delete= "DELETE FROM sessions WHERE id = ?"
+        cursor.execute(delete, (session_ids[2],))
+        connection.commit()
+    
+    elif(option3 == "4"):
+        # print(f"deleting {session_ids[3]}")
+        delete= "DELETE FROM sessions WHERE id = ?"
+        cursor.execute(delete, (session_ids[3],))
+        connection.commit()
+        

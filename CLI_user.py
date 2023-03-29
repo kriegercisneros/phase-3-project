@@ -21,8 +21,6 @@ else:
     # Extract the retrieved password from the result
     password = input("Enter your password: ")
     db_password = result_password[0]
-    #what is result_email[0]?
-
     # Compare the entered password with the retrieved password
     if password == db_password:
         user_name = "SELECT name FROM users WHERE email = ?"
@@ -34,22 +32,21 @@ else:
         print(f"Hello, {result_name[0]}!")
         option = input('''
             What would you like to do today?
-                1) View past conversations (type 1)
-                2) Start a new conversation (type 2)
+                1) View and Delete and Continue Past conversations
+                2) Start a new conversation 
+                3) Edit Profile Information 
             ''')
         if option == "1":
             from past_convos import past_convos
             past_convos(user_id)
             pass
-        else:
+        elif(option=="2"):
             from bot import run_bot
-            run_bot(user_id)
-            
-        
-        #if user selects 2, route to bot.py
-        #if user selects 1, route to past_convos.py
-        #I need user id to be captured here so I can use it in bot.py
-        
+            run_bot(user_id, None)
+        elif(option=="3"):
+            from edit_profile import edit_profile
+            edit_profile(user_id)
+            pass
     else:
         print("Invalid password")
         cursor.close()
