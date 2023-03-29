@@ -39,8 +39,6 @@ def run_bot(user_id, session_id):
     # trainer_corpus = ChatterBotCorpusTrainer(chatbot)
     # trainer_corpus.train("chatterbot.corpus.english.greetings", "chatterbot.corpus.english.conversations")
 
-    # user_id = sys.argv[1]
-    # from CLI_user import select_user_id 
     exit_conditions = (":q", "quit", "exit")
     time_commands = ("Time", "What time is it?", "Do you know the time?")
     insert_sql_sessions = '''INSERT INTO sessions (user_id) VALUES (?)'''
@@ -76,7 +74,7 @@ def run_bot(user_id, session_id):
             # execute the user_convos query
             cursor.execute(insert_sql_user_convos, (user_id, session_id, str(user_input), str(bot_response)))
             connection.commit()
-            print("User Conversation successfully added.")
+            # print("User Conversation successfully added.")
 
     cursor.close()
     connection.close()
