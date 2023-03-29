@@ -9,10 +9,6 @@ connection = sqlite3.connect('db.sqlite3')
 
 cursor = connection.cursor()
 
-CORPUS_FILE = "chat.txt"
-
-#i want to say if session_id is passed in as an argument, then session_started = True 
-#and session_id = session_id
 def run_bot(user_id, session_id):
 #EDR stands for ExtremeDataRetrieval
     chatbot = ChatBot(
@@ -23,30 +19,13 @@ def run_bot(user_id, session_id):
             'chatterbot.logic.TimeLogicAdapter'
         ],
         database_uri = 'sqlite:///db.sqlite3')
-    #this is an example of how to manually train the chatbot
-    # trainer= ListTrainer(chatbot)
-    # trainer.train([
-    #     "Hi",
-    #     "Welcome, friend!"
-    # ])
-    # trainer.train([
-    #     "Can you help with something today?",
-    #     "Of course!  Helping is my favorite :)"
-    # ])
-    # cleaned_corpus = clean_corpus(CORPUS_FILE)
-    # trainer.train(cleaned_corpus)
 
-    # trainer_corpus = ChatterBotCorpusTrainer(chatbot)
-    # trainer_corpus.train("chatterbot.corpus.english.greetings", "chatterbot.corpus.english.conversations")
 
-    # user_id = sys.argv[1]
-    # from CLI_user import select_user_id 
     exit_conditions = (":q", "quit", "exit")
     time_commands = ("Time", "What time is it?", "Do you know the time?")
     insert_sql_sessions = '''INSERT INTO sessions (user_id) VALUES (?)'''
     insert_sql_user_convos = '''INSERT INTO user_convos (user_id, sessions_id, user_input, bot_response)
                                 VALUES (?, ?, ?, ?)'''
-    
     
     session_started = True
     if(session_id == None):
