@@ -40,7 +40,7 @@ def past_convos(id_from_user):
             Select a conversation to Delete:
                 {displayed_session_ids}
             ''')
-        #the code below needs to go in a different file i think 
+        #Pulls up the old conversation and then calls bot.py to run the bot again
         if(option2 == "1"):
             session_convos = "SELECT user_input FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_convos, (session_ids[0],))

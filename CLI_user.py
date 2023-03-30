@@ -3,6 +3,7 @@ import sqlite3
 connection = sqlite3.connect('db.sqlite3')
 cursor = connection.cursor()
 def login():
+    print("Wonderful, let's get you logged in.")
     email = input("Enter your email: ")
     #Declaring a user_id to equal None so i can set it inside of the if statement and use it as an export to bot.py
     user_id = None
