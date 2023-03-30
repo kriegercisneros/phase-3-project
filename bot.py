@@ -32,6 +32,8 @@ def run_bot(user_id, session_id):
                 What Bot Language Persona would you like to chat with?
                 1)English
                 2)Spanish
+                3)Simplified Chinese
+                4)Akan
     ''')
 
 
@@ -54,6 +56,7 @@ def run_bot(user_id, session_id):
             else:
                 eng_lang_persona_response = bot.get_response(user_input, persona='English Language')
                 print('English Language 🤖:', eng_lang_persona_response)
+                #checks to see if a session has been started to create a new row of sessions
                 if session_started == False:
                     cursor.execute(insert_sql_sessions, (user_id,))
                     print("User session started.")

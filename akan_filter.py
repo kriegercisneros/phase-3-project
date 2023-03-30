@@ -1,11 +1,10 @@
-
 from chatterbot import ChatBot
 from google.cloud import translate_v2 as translate
 import os
 import datetime
 
-# Set up the translation client
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/Users/jackiecisneros/Development/code/phase-3/phase-3-project-2/simple_bot_api.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/jackiecisneros/Development/code/phase-3/phase-3-project-2/simple_bot_api.json'
+
 #from google.cloud the translate API.  Client()
 translate_client = translate.Client()
 
@@ -15,10 +14,9 @@ def translate_to_english(text):
     return result['translatedText']
 
 # Define a function to translate text from English to Spanish
-def translate_to_spanish(text):
-    result = translate_client.translate(text, target_language='es')
+def translate_to_akan(text):
+    result = translate_client.translate(text, target_language='ak')
     return result['translatedText']
-
 
 # Create a new ChatBot instance with the English persona
 chatbot = ChatBot(
@@ -31,7 +29,6 @@ chatbot = ChatBot(
         ]
     }
 )
-
 # Define the exit conditions and time commands
 exit_conditions = (":q", "quit", "exit")
 time_commands = ("Time", "What time is it?", "Do you know the time?")
@@ -39,10 +36,10 @@ time_commands = ("Time", "What time is it?", "Do you know the time?")
 # Start the conversation loop
 while True:
     # Get the user's input in Spanish
-    user_input_spanish = input(">>> ")
+    user_input_akan = input(">>> ")
 
     # Translate the user's input from Spanish to English
-    user_input_english = translate_to_english(user_input_spanish)
+    user_input_english = translate_to_english(user_input_akan)
 
     # Check if the user wants to exit or get the time
     if user_input_english.lower() in exit_conditions:
@@ -55,7 +52,7 @@ while True:
         bot_response_english = chatbot.get_response(user_input_english)
 
         # Translate the bot's response from English to Spanish
-        bot_response_spanish = translate_to_spanish(str(bot_response_english))
+        bot_response_akan = translate_to_akan(str(bot_response_english))
 
         # Print the bot's response in Spanish
-        print("🤖:", bot_response_spanish)
+        print("🤖:", bot_response_akan)
