@@ -40,31 +40,29 @@ def past_convos(id_from_user):
             Select a conversation to Delete:
                 {displayed_session_ids}
             ''')
-        #Pulls up the old conversation and then calls bot.py to run the bot again
+
         if(option2 == "1"):
             session_convos = "SELECT user_input FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_convos, (session_ids[0],))
             user_input = [row[0] for row in cursor.fetchall()]
-            # print(f'user_input: {user_input}')
-
             session_response = "SELECT bot_response FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_response, (session_ids[0],))
             bot_response = [row[0] for row in cursor.fetchall()]
-            # print(f'bot_response: {bot_response}')
             for r, resp in zip(user_input, bot_response):
                     print(f'''
                         user: {r}
                             bot: {resp}
                     ''')
+            select_persona = "SELECT persona FROM sessions WHERE id=?"
+            cursor.execute(select_persona, (session_ids[0],))
+            selected_persona =[row[0] for row in cursor.fetchall()]
             from bot import run_bot
-            run_bot(id_from_user, session_ids[0])
+            run_bot(id_from_user, session_ids[0], selected_persona[0])
 
-        elif(option2 =="2"):
+        elif(option2 == "2"):
             session_convos = "SELECT user_input FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_convos, (session_ids[1],))
             user_input = [row[0] for row in cursor.fetchall()]
-            # print(f'user_input: {user_input}')
-
             session_response = "SELECT bot_response FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_response, (session_ids[1],))
             bot_response = [row[0] for row in cursor.fetchall()]
@@ -73,13 +71,16 @@ def past_convos(id_from_user):
                         user: {r}
                             bot: {resp}
                     ''')
+            select_persona = "SELECT persona FROM sessions WHERE id=?"
+            cursor.execute(select_persona, (session_ids[1],))
+            selected_persona =[row[0] for row in cursor.fetchall()]
+            from bot import run_bot
+            run_bot(id_from_user, session_ids[1], selected_persona[0])
 
         elif(option2 =="3"):
             session_convos = "SELECT user_input FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_convos, (session_ids[2],))
             user_input = [row[0] for row in cursor.fetchall()]
-            # print(f'user_input: {user_input}')
-
             session_response = "SELECT bot_response FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_response, (session_ids[2],))
             bot_response = [row[0] for row in cursor.fetchall()]
@@ -88,11 +89,16 @@ def past_convos(id_from_user):
                         user: {r}
                             bot: {resp}
                     ''')
+            select_persona = "SELECT persona FROM sessions WHERE id=?"
+            cursor.execute(select_persona, (session_ids[2],))
+            selected_persona =[row[0] for row in cursor.fetchall()]
+            from bot import run_bot
+            run_bot(id_from_user, session_ids[2], selected_persona[0])
+
         elif(option2=="4"):
             session_convos = "SELECT user_input FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_convos, (session_ids[3],))
             user_input = [row[0] for row in cursor.fetchall()]
-            # print(f'user_input: {user_input}')
             session_response = "SELECT bot_response FROM user_convos WHERE sessions_id=?"
             cursor.execute(session_response, (session_ids[3],))
             bot_response = [row[0] for row in cursor.fetchall()]
@@ -101,6 +107,11 @@ def past_convos(id_from_user):
                         user: {r}
                             bot: {resp}
                     ''')
+            select_persona = "SELECT persona FROM sessions WHERE id=?"
+            cursor.execute(select_persona, (session_ids[3],))
+            selected_persona =[row[0] for row in cursor.fetchall()]
+            from bot import run_bot
+            run_bot(id_from_user, session_ids[3], selected_persona[0])
     #right now i am passing in user id of 4 for testing purposes
     # past_convos(4)
 
@@ -127,4 +138,4 @@ def past_convos(id_from_user):
         delete= "DELETE FROM sessions WHERE id = ?"
         cursor.execute(delete, (session_ids[3],))
         connection.commit()
-        
+# past_convos(1)

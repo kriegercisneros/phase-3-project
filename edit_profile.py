@@ -19,5 +19,5 @@ def edit_profile(user_id):
     
             # connection.close()
 
-edit_profile(2)
+# edit_profile(2)
     
