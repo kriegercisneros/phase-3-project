@@ -9,7 +9,7 @@ connection = sqlite3.connect('db.sqlite3')
 
 cursor = connection.cursor()
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/jackiecisneros/Development/code/phase-3/phase-3-project-2/simple_bot_api.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './simple_bot_api.json'
 
 
 def run_akan_persona(user_id, session_id):
