@@ -12,23 +12,23 @@ NOTE: Chatterbot is no longer maintained, so to get the lastest version that wor
 
 1. Get your local environment set up:
 
-    a. If you know how to install python 3.7.16, go ahead and do that and set it to as your global version of python.  If you're not sure how to do that, follow these steps:
+    If you know how to install python 3.7.16, go ahead and do that and set it to as your global version of python.  If you're not sure how to do that, follow these steps:
 
-        + have homebrew already installed?  Great!  Skip this step.  If not, go to your command line and type the following:
+    a. Have homebrew already installed?  Great!  Skip this step.  If not, go to your command line and type the following:
 
             $ /bin/bash-c"$(curl - fsSL https://raw.githubusercontent.com/Homebres/install/head/install.sh)
 
-        ++NOTE: It is going to ask for your password for admin access to your local machine.  It won't display any characters, but the system is tracking your input.  After you type it, hit enter and the install should start. 
+    NOTE: It is going to ask for your password for admin access to your local machine.  It won't display any characters, but the system is tracking your input.  After you type it, hit enter and the install should start. 
 
-        + Next, install the python version manager for your machine.  This will help you manage different versions of python, which is helpful for keeping different versions installed and swtiching between them.  Type:
+    b. Next, install the python version manager for your machine.  This will help you manage different versions of python, which is helpful for keeping different versions installed and swtiching between them.  Type:
 
             $ brew install pyenv
 
-        + Next, find out what shell startup file (either .zshrc or .bash_profile) you are in.  Type: 
+    c. Next, find out what shell startup file (either .zshrc or .bash_profile) you are in.  Type: 
 
             $ echo $SHELL
 
-        + You should see /bin/.zsh or /bin/.bash_profile.  Based on that type either:
+    d. You should see /bin/.zsh or /bin/.bash_profile.  Based on that type either:
 
             $ code ~/.bash_profile
 
@@ -36,15 +36,15 @@ NOTE: Chatterbot is no longer maintained, so to get the lastest version that wor
 
             $ code ~/.zshrc
 
-        This will open up the file in your code editor (assuming you have the code command installed in your editor.  If you do not, do a quick google search to find out how to do that, or open the file in whatever way you know how.)
+    e. This will open up the file in your code editor (assuming you have the code command installed in your editor.  If you do not, do a quick google search to find out how to do that, or open the file in whatever way you know how.)
 
-        + add the following to the end of your file 
+    f. add the following to the end of your file 
 
             if which pyenv > /dev/null; then 
                 eval "$(pyenv init -)";
             fi
 
-        + We want to load the new settings.  Type:
+    g. We want to load the new settings.  Type:
 
             $ source ~/.bash_profile
         
@@ -52,11 +52,11 @@ NOTE: Chatterbot is no longer maintained, so to get the lastest version that wor
 
             $ source ~/.zshrc
         
-        + Now install our python version:
+    h. Now install our python version:
 
             $ pyenv install 3.7.16
 
-        + Then set it as your global python version.  This is easy to change later, as you have not uninstalled other versions of python.  Type:
+    i. Then set it as your global python version.  This is easy to change later, as you have not uninstalled other versions of python.  Type:
 
             $ pyenv global 3.7.16
 
