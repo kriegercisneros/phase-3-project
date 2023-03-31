@@ -66,41 +66,41 @@ NOTE: Chatterbot is no longer maintained, so to get the lastest version that wor
 
 3. Open the virtual enviromnent: 
 
-    $ source venv/bin/activate
+        $ source venv/bin/activate
 
-    You should now see (venv) in front of the line of code displaying your current location. 
+You should now see (venv) in front of the line of code displaying your current location. 
 
 4. Now we are going to install our dependencies.
 
     a. Install chatterbot version 1.0.4.  This one works with the necessary Natural Language Processing (NLP) libraries (most notably spacy and NLPTK) necesssary for making best-match responses:
 
-        + Type:
+    Type:
 
             $ python -m pip install chatterbot==1.0.4 pytz
 
-            This installs the version of chatterbot that we need, and the chatterbot corpus, in case you feel interested to use the corpus to train the bot further. 
+    This installs the version of chatterbot that we need, and the chatterbot corpus, in case you feel interested to use the corpus to train the bot further. 
 
     b. Install Google Cloud Translate.  I use this API to take the english training data I have fed the bot and translates the response to whatever laguage persona you have chosen to use. 
 
-        + type:
+    type:
 
             $ pip install google-cloud-translate.  
         
-        + Now you should have the emailed API file.  Go ahead and create a new file titled this:  
+    Now you should have the emailed API file.  Go ahead and create a new file titled this:  
         
         simple_bot_api.json 
         
-        This should allow you to access the API.  
+    This should allow you to access the API.  
 
-        + To see a list of installed dependencies you can type:
+    To see a list of installed dependencies you can type:
 
             $ python -m pip freeze
         
-        Here you should see chatterbot and google cloud translate, along with many other dependencies.  If those two are there you should be good.
+    Here you should see chatterbot and google cloud translate, along with many other dependencies.  If those two are there you should be good.
 
 5. Now you are going to open the file to begin the login in process in the command line:
 
-    $ python CLI_new_user.py
+        $ python CLI_new_user.py
 
 5. create a new user by providing username, password and email.
 
