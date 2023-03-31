@@ -1,4 +1,4 @@
-Thanks for opening up my phase-3 project at Flatiron School, CLI Multi-Lingual Bot.  In this project I explored the chatterbot engine and google translate API to create a command line chat bot.  If you would like to check out my project, you will need to set up a venv and download python 3.7.16.  Also, send me an email at:
+Thanks for opening up my phase-3 project at Flatiron School, CLI Multi-Lingual Bot.  In this project I explored the chatterbot engine and google translate API to create a command line chat bot.  If you would like to check out my project, you will need to set up a venv and download python 3.7.16.  Also, you will need the Google Could Translate API document I created for this project.  To get it, send me an email at:
 
     krieger.jacqueline@gmail.com
 
@@ -19,7 +19,7 @@ NOTE: Chatterbot is no longer maintained, so to get the lastest version that wor
             $ /bin/bash-c"$(curl - fsSL https://raw.githubusercontent.com/Homebres/install/head/install.sh)
 
         ++NOTE: It is going to ask for your password for admin access to your local machine.  It won't display any characters, but the system is tracking your input.  After you type it, hit enter and the install should start. 
-        
+
         + Next, install the python version manager for your machine.  This will help you manage different versions of python, which is helpful for keeping different versions installed and swtiching between them.  Type:
 
             $ brew install pyenv
